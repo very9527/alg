@@ -5,6 +5,7 @@ import java.util.BitSet;
 /**
  * 
  * @author very9527
+ * 一个用布隆过滤器过滤垃圾邮箱的例子
  *
  */
 public class BloomFilter {
@@ -14,11 +15,11 @@ public class BloomFilter {
 	private static BitSet sets = new BitSet(LENGHT);
 	
 	/**
-	 * 将值hash后放入BitSet中
+	 * 将垃圾邮箱放入BloomFilter里面
 	 */
-	public static void setValue() {
+	public static void setVaildEmail() {
 		for (int i = 0; i < seeds.length; i++) {
-			int hashCode = hash(invalidStr, seeds[i]);
+			int hashCode = hashEmail(invalidStr, seeds[i]);
 			sets.set(hashCode,true);
 		}
 	}
@@ -26,35 +27,42 @@ public class BloomFilter {
 	/**
 	 * 检查某邮箱是否在过滤器中。
 	 */
-	public static void check() {
-		String checkValue = "tom1@gmail.com";
+	public static void checkEmail(String email) {
+		
+		boolean existed = true;
 		for (int i = 0; i < seeds.length; i++) {
-			int hashCode = hash(checkValue, seeds[i]);
-			boolean existed = sets.get(hashCode);
+			int hashCode = hashEmail(email, seeds[i]);
+			existed = sets.get(hashCode);
 			if (!existed) {
-				System.out.println("不存在");
 				break;
 			}
+		}
+		
+		if (existed){
+			System.out.println("存在");
+		} else {
+			System.out.println("不存在");
 		}
 	}
 	
 	/**
-	 * 对字符串进行hash
-	 * @param hashStr
+	 * 对字符串进行 hash
+	 * @param str
 	 * @param seed
 	 * @return
 	 */
-	public static int hash(String hashStr, int seed) {
+	public static int hashEmail(String str, int seed) {
 		int result = 0;
-		for(int i=0;i<hashStr.length(); i++) {
-			result = seed*result + hashStr.charAt(i);
+		for(int i=0;i<str.length(); i++) {
+			result = seed*result + str.charAt(i);
 		}
 		return (LENGHT -1) & result;
 	}
 	
 	
 	public static void main(String[] args) {
-		setValue();
-		check();
+		setVaildEmail();
+		String email = "tom@gmail.com";
+		checkEmail(email);
 	}
 }	
