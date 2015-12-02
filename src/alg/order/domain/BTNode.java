@@ -1,7 +1,7 @@
-package alg.order.pre;
+package alg.order.domain;
 
 /**
- * Ê÷½Úµã
+ * æ ‘ç»“æž„
  * @author zhangzhiyun
  */
 public class BTNode {

@@ -2,6 +2,8 @@ package alg.order.pre;
 
 import java.util.Stack;
 
+import alg.order.domain.BTNode;
+
 public class BinTree {
 	private BTNode root;
 	public BinTree(BTNode root) {
@@ -27,7 +29,7 @@ public class BinTree {
 	}
 	
 	/**
-	 * ÏÈÐò±éÀú
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param root
 	 */
 	public static void preorder(BTNode root) {
@@ -52,7 +54,7 @@ public class BinTree {
 		Stack<BTNode> stack = new Stack<>();
 		
 		while (p!=null) {
-			// ÏÈ´æ´¢ÓÒ×ÓÊ÷£¬ÔÙ´æ´¢¾Ö²¿root½Úµã¡£
+			// ï¿½È´æ´¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù´æ´¢ï¿½Ö²ï¿½rootï¿½Úµã¡£
 			while (p!=null) {
 				if(p.getRight()!=null) {
 					stack.push(p.getRight());
@@ -61,16 +63,16 @@ public class BinTree {
 				p = p.getLeft();
 			}
 			
-			// µÚÒ»ÂÖ±éÀúÍê³ÉÖ®ºó,½«×îºóÒ»´ÎpushµÄ¸ù½Úµãpop½øÈ¥¡£
+			// ï¿½ï¿½Ò»ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½pushï¿½Ä¸ï¿½ï¿½Úµï¿½popï¿½ï¿½È¥ï¿½ï¿½
 			p = stack.pop();
 			
-			// Èç¹ûÕ»²»Îª¿Õ²¢ÇÒµ±Ç°½ÚµãµÄÓÒ×ÓÊ÷µÈÓÚnull
+			// ï¿½ï¿½ï¿½Õ»ï¿½ï¿½Îªï¿½Õ²ï¿½ï¿½Òµï¿½Ç°ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½null
 			while(!stack.empty() && p.getRight() == null ) {
 				visit(p);
 				p = stack.pop();
 			}
 			
-			// Èç¹û·¢ÏÖÓÐright½Úµã£¬ÏÈ·ÃÎÊµ±Ç°½Úµã£¬ÔÙ½øÐÐÏÂÒ»ÂÖ¶ÔÊ÷µÄµü´ú¡£
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rightï¿½Úµã£¬ï¿½È·ï¿½ï¿½Êµï¿½Ç°ï¿½Úµã£¬ï¿½Ù½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½
 			visit(p);
 			
 			if(!stack.empty()) {
@@ -93,7 +95,7 @@ public class BinTree {
 			}
 			while(p!=null &&(p.getRight()==null || p.getRight() == q)) {
 				visit(p);
-				q = p; // ¼ÇÂ¼×î½üÊä³öµÄ½Úµã¡£
+				q = p; // ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½Úµã¡£
 				if(stack.empty()){
 					return;
 				}
