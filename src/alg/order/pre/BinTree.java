@@ -48,6 +48,10 @@ public class BinTree {
 		
 	}
 	
+	/**
+	 * 中序遍历
+	 * @param p
+	 */
 	public static void minOrder(BTNode p) {
 		Stack<BTNode> stack = new Stack<>();
 		BTNode node = p;
