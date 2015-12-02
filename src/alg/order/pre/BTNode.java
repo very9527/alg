@@ -1,8 +1,8 @@
-package alg.order.domain;
+package alg.order.pre;
 
 /**
  * 树结构
- * @author zhangzhiyun
+ * @author very9527
  */
 public class BTNode {
 	private String data;

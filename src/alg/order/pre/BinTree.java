@@ -2,8 +2,6 @@ package alg.order.pre;
 
 import java.util.Stack;
 
-import alg.order.domain.BTNode;
-
 public class BinTree {
 	private BTNode root;
 	public BinTree(BTNode root) {
@@ -29,7 +27,7 @@ public class BinTree {
 	}
 	
 	/**
-	 * �������
+	 *  先序遍历
 	 * @param root
 	 */
 	public static void preorder(BTNode root) {
@@ -52,57 +50,22 @@ public class BinTree {
 	
 	public static void minOrder(BTNode p) {
 		Stack<BTNode> stack = new Stack<>();
-		
-		while (p!=null) {
-			// �ȴ洢���������ٴ洢�ֲ�root�ڵ㡣
-			while (p!=null) {
-				if(p.getRight()!=null) {
-					stack.push(p.getRight());
-				}
-				stack.push(p);
-				p = p.getLeft();
+		BTNode node = p;
+		while (node != null || stack.size() > 0) {
+			while (node != null ) {
+				stack.push(node);
+				node = node.getLeft();
 			}
-			
-			// ��һ�ֱ������֮��,�����һ��push�ĸ��ڵ�pop��ȥ��
-			p = stack.pop();
-			
-			// ���ջ��Ϊ�ղ��ҵ�ǰ�ڵ������������null
-			while(!stack.empty() && p.getRight() == null ) {
-				visit(p);
-				p = stack.pop();
-			}
-			
-			// ���������right�ڵ㣬�ȷ��ʵ�ǰ�ڵ㣬�ٽ�����һ�ֶ����ĵ�����
-			visit(p);
-			
-			if(!stack.empty()) {
-				p = stack.pop();
-			} else {
-				p = null;
+			if (stack.size() > 0) {
+				node = stack.pop();
+				visit(node);
+				node = node.getRight();
 			}
 		}
 		
 		
 	}
 	
-	
-	public void afterOrder(BTNode p) {
-		BTNode q = p;
-		Stack<BTNode> stack = new Stack<>();
-		while(p!=null) {
-			for (; p.getLeft()!=null; p = p.getLeft()) {
-				stack.push(p);
-			}
-			while(p!=null &&(p.getRight()==null || p.getRight() == q)) {
-				visit(p);
-				q = p; // ��¼�������Ľڵ㡣
-				if(stack.empty()){
-					return;
-				}
-				p = stack.pop();
-			}
-		}
-	}
 	
 	public static void main(String[] args) {
 		BinTree t = new BinTree(init());
